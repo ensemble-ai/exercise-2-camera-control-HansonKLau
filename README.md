@@ -53,7 +53,7 @@ In the grand tradition of [shmups](http://www.shmups.com/), this camera controll
 Your controller should draw the frame border box when `draw_camera_logic` is true. 
 
 Required exported fields:
-* `Vector2 top_teft` - the top left corner of the frame border box.
+* `Vector2 top_left` - the top left corner of the frame border box.
 * `Vector2 bottom_right` - the bottom right corner of the frame border box.
 * `Vector3 autoscroll_speed` - the number of units per second to scroll along each axis. For this project, you should only scroll on the `x` and `z` axes.
 

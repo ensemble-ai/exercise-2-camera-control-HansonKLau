@@ -11,6 +11,7 @@ const WIDTH: float = RADIUS * 2.0
 const BASE_SPEED: int = 50
 const HYPER_SPEED: int = 300
 
+
 func _physics_process(_delta):
 	
 	var speed = BASE_SPEED
@@ -28,7 +29,6 @@ func _physics_process(_delta):
 		_play($Audio/Terraforming)
 		terrain_manager.move_vertex_below_position(global_position, -terrforming_power)
 
-	
 	var input_dir = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

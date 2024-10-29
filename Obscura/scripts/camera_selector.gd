@@ -25,8 +25,8 @@ func _process(_delta):
 					cameras[current_controller].make_current()
 				else:
 					cameras[index].current = false
-					#cameras[index].draw_camera_logic = false
-		#make sure we have an active controller
+					#cameras[index].draw_camera_logic = false # <- made it static so toggle is for all cameras
+		# make sure we have an active controller
 		if cameras[current_controller] == null:
 			for index in len(cameras):
 				if null != cameras[index]:
