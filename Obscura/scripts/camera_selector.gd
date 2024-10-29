@@ -1,8 +1,8 @@
 extends Node
 
-@export var cameras:Array[CameraControllerBase]
+@export var cameras: Array[CameraControllerBase]
 
-var current_controller:int = 0
+var current_controller: int = 0
 
 
 func _ready():
@@ -11,7 +11,6 @@ func _ready():
 			camera.current = false
 	if(len(cameras) > current_controller+1):
 		cameras[current_controller].make_current()
-
 
 func _process(_delta):
 	
@@ -26,7 +25,7 @@ func _process(_delta):
 					cameras[current_controller].make_current()
 				else:
 					cameras[index].current = false
-					cameras[index].draw_camera_logic = false
+					#cameras[index].draw_camera_logic = false
 		#make sure we have an active controller
 		if cameras[current_controller] == null:
 			for index in len(cameras):

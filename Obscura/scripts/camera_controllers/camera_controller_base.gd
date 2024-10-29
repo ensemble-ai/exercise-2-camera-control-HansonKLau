@@ -1,13 +1,14 @@
 class_name CameraControllerBase
 extends Camera3D
 
+@onready var target: Vessel = %Vessel
 
-@export var target:Vessel
-@export var dist_above_target:float = 10.0
-@export var zoom_speed:float = 10.0
-@export var min_zoom:float = 5.0
-@export var max_zoom:float = 100.0
-@export var draw_camera_logic:bool = false
+@export var dist_above_target: float = 10.0
+@export var zoom_speed: float = 10.0
+@export var min_zoom: float = 5.0
+@export var max_zoom: float = 100.0
+
+static var draw_camera_logic: bool = true
 
 #camera tilt around the z axis in radians
 #var _camera_tilt_rad:float = 0.0
@@ -20,6 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire1"):
+		print("toggled")
 		draw_camera_logic = !draw_camera_logic
 	if Input.is_action_pressed("zoom_in"):
 		dist_above_target = clampf(dist_above_target - zoom_speed * delta, min_zoom, max_zoom)

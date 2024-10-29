@@ -1,15 +1,15 @@
 class_name Vessel
 extends CharacterBody3D
 
-@export var terrforming_power:float = 1.0
-@export var terrain_manager:TerrainManager
+@export var terrforming_power: float = 1.0
+@export var terrain_manager: TerrainManager
 
-const RADIUS:float = 0.5
-const HEIGHT:float = RADIUS * 2.0
-const WIDTH:float = RADIUS * 2.0
+const RADIUS: float = 0.5
+const HEIGHT: float = RADIUS * 2.0
+const WIDTH: float = RADIUS * 2.0
 
-const BASE_SPEED = 50
-const HYPER_SPEED = 300
+const BASE_SPEED: int = 50
+const HYPER_SPEED: int = 300
 
 func _physics_process(_delta):
 	

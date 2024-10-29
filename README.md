@@ -1,3 +1,12 @@
+#####
+
+draw_camera_logic has been made into a static variable so toggling this will toggle it for every camera.
+(ex: if you turn it off, it will be off for all cameras, if you turn it on it will be on for all cameras).
+
+#####
+
+
+
 # Camera Control Exercise
 
 ## Description
