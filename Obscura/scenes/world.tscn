@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://88du8yjefx8j"]
+[gd_scene load_steps=14 format=4 uid="uid://88du8yjefx8j"]
 
 [ext_resource type="PackedScene" uid="uid://dtm13sp1jsrwi" path="res://scenes/vessel.tscn" id="1_oaql3"]
 [ext_resource type="Script" path="res://scripts/camera_selector.gd" id="2_qffo5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/camera_controllers/position_lock.gd" id="7_1raba"]
 [ext_resource type="Script" path="res://scripts/camera_controllers/horizontal_auto_scroll.gd" id="8_ofmf7"]
 [ext_resource type="Script" path="res://scripts/camera_controllers/lock_lerp.gd" id="9_35kl8"]
+[ext_resource type="Script" path="res://scripts/camera_controllers/lerp_target.gd" id="10_s04fv"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ryups"]
 _surfaces = [{
@@ -44,7 +45,7 @@ terrain_manager = NodePath("../TerrainManager")
 
 [node name="CameraSelector" type="Node" parent="." node_paths=PackedStringArray("cameras")]
 script = ExtResource("2_qffo5")
-cameras = [NodePath("../PushBoxCamera"), NodePath("../PushBoxCamera2"), NodePath("../PushBoxCamera3"), NodePath("../PositionLock"), NodePath("../HorizontalAutoScroll"), NodePath("../LockLerp")]
+cameras = [NodePath("../PushBoxCamera"), NodePath("../PushBoxCamera2"), NodePath("../PushBoxCamera3"), NodePath("../PositionLock"), NodePath("../HorizontalAutoScroll"), NodePath("../LockLerp"), NodePath("../LerpTarget")]
 
 [node name="PushBoxCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_ttnp6")]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 30, 0)
@@ -108,4 +109,9 @@ dist_above_target = 20.0
 [node name="LockLerp" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
 script = ExtResource("9_35kl8")
+target = NodePath("../Vessel")
+
+[node name="LerpTarget" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30, 0)
+script = ExtResource("10_s04fv")
 target = NodePath("../Vessel")
