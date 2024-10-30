@@ -1,8 +1,9 @@
 class_name CameraControllerBase
 extends Camera3D
 
-@onready var target: Vessel = %Vessel
+#@onready var target: Vessel = %Vessel
 
+@export var target: Vessel
 @export var dist_above_target: float = 10.0
 @export var zoom_speed: float = 10.0
 @export var min_zoom: float = 5.0

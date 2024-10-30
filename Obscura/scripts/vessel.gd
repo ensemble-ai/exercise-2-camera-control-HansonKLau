@@ -28,7 +28,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("lower_terrain"):
 		_play($Audio/Terraforming)
 		terrain_manager.move_vertex_below_position(global_position, -terrforming_power)
-
+	
 	var input_dir = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -45,6 +45,7 @@ func _physics_process(_delta):
 		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
+
 
 func _play(player:AudioStreamPlayer2D) -> void:
 	if !player.playing:
