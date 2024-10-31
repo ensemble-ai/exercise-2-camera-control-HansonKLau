@@ -12,8 +12,8 @@ func _ready():
 	if(len(cameras) > current_controller+1):
 		cameras[current_controller].make_current()
 
+
 func _process(_delta):
-	
 	if Input.is_action_just_pressed("cycle_camera_controller"):
 		current_controller += 1
 		if len(cameras) < current_controller+1:

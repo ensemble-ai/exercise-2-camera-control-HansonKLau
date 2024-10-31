@@ -19,7 +19,11 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
+
+	super(delta)
 	
+
+func _physics_process(delta: float) -> void:
 	var target_pos: Vector3 = target.global_position
 	var camera_pos: Vector3 = global_position
 	
@@ -40,8 +44,6 @@ func _process(delta: float) -> void:
 
 	if target.velocity.z == 0:
 		global_position.z = lerp(camera_pos.z, target_pos.z, catchup_speed * delta)
-
-	super(delta)
 
 
 func draw_logic() -> void:
