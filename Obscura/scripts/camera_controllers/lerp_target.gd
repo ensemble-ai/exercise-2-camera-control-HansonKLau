@@ -6,11 +6,12 @@ extends CameraControllerBase
 @export var lead_speed: float = target.BASE_SPEED * 1.5
 @export var catchup_delay_duration: float = 0.2
 @export var catchup_speed: float = 4.0
-@export var leash_distance: float = 10.0
+@export var leash_distance: float = 15.0
 
 var _current_camera_distance_x: float = 0.0
 var _current_camera_distance_z: float = 0.0
-var _catchup_wait_timer: float = 0.0
+var _catchup_wait_timer_x: float = 0.0
+var _catchup_wait_timer_z: float = 0.0
 
 
 func _ready() -> void:
@@ -25,6 +26,10 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
+	super(delta)
+
+
+func _physics_process(delta: float) -> void:
 	var target_pos: Vector3 = target.global_position
 	var camera_pos: Vector3 = global_position
 	
@@ -36,9 +41,9 @@ func _process(delta: float) -> void:
 		var speed_multiplier_x: float = lerp(1, 6, clamp((distance_x - leash_distance) / leash_distance, 0, 1))
 		var smooth_speed_x: float = lead_speed * speed_multiplier_x
 		global_position.x = lerp(global_position.x, lead_pos_x, smooth_speed_x * delta * 0.5)
-		_catchup_wait_timer = 0.0
+		_catchup_wait_timer_x = 0.0
 	else:
-		if _catchup_wait_timer > catchup_delay_duration:
+		if _catchup_wait_timer_x > catchup_delay_duration:
 			_current_camera_distance_x = lerp(_current_camera_distance_x, 0.0, delta)
 			global_position.x = lerp(global_position.x, target_pos.x, catchup_speed * delta)
 
@@ -50,16 +55,16 @@ func _process(delta: float) -> void:
 		var speed_multiplier_z: float = lerp(1, 6, clamp((distance_z - leash_distance) / leash_distance, 0, 1))
 		var smooth_speed_z: float = lead_speed * speed_multiplier_z
 		global_position.z = lerp(global_position.z, lead_pos_z, smooth_speed_z * delta * 0.5)
-		_catchup_wait_timer = 0.0
+		_catchup_wait_timer_z = 0.0
 		
 	else:
-		if _catchup_wait_timer > catchup_delay_duration:
+		if _catchup_wait_timer_z > catchup_delay_duration:
 			_current_camera_distance_z = lerp(_current_camera_distance_z, 0.0, delta)
 			global_position.z = lerp(global_position.z, target_pos.z, catchup_speed * delta)
 		
-	_catchup_wait_timer += delta	
-	super(delta)
-
+	_catchup_wait_timer_x += delta
+	_catchup_wait_timer_z += delta
+	
 
 func draw_logic() -> void:
 	var mesh_instance := MeshInstance3D.new()

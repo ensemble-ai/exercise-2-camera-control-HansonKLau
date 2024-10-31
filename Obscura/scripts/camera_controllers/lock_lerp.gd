@@ -3,9 +3,9 @@ extends CameraControllerBase
 
 @export var box_width: float = 10.0
 @export var box_height: float = 10.0
-@export var follow_speed: float = target.BASE_SPEED / 1.5
-@export var catchup_speed: float = 4.5
-@export var leash_distance: float = 20.0
+@export var follow_speed: float = 6.0
+@export var catchup_speed: float = 4.0
+@export var leash_distance: float = 10.0
 
 
 func _ready() -> void:
@@ -19,6 +19,11 @@ func _process(delta: float) -> void:
 	
 	if draw_camera_logic:
 		draw_logic()
+
+	super(delta)
+	
+
+func _physics_process(delta: float) -> void:
 	
 	var target_pos: Vector3 = target.global_position
 	var camera_pos: Vector3 = global_position
@@ -28,31 +33,18 @@ func _process(delta: float) -> void:
 		var target_2d_vector: Vector2 = Vector2(target_pos.x, target_pos.z)
 		var camera_2d_vector: Vector2 = Vector2(camera_pos.x, camera_pos.z)
 		var distance: float = target_2d_vector.distance_to(camera_2d_vector)
-		
-		#var smooth_speed: float = follow_speed
 	
-		if distance >= leash_distance / 2.0:
-			print("outside leash distance")
-			#var speed_multiplier: float = lerp(1, 6, clamp((distance - leash_distance) / leash_distance, 0, 1))
-			#smooth_speed *= speed_multiplier
-			global_position.x = move_toward(global_position.x, target_pos.x, target.velocity.length() * delta)
-			global_position.z = move_toward(global_position.z, target_pos.z, target.velocity.length() * delta)
-		else:
-			print("within leash distance")
-			#global_position = lerp(camera_pos, target_pos, smooth_speed * delta)
-			#global_position.velocity = follow_speed * delta
-			global_position.x = move_toward(global_position.x, target_pos.x, follow_speed * delta)
-			global_position.z = move_toward(global_position.z, target_pos.z, follow_speed * delta)
-		
+		var speed_multiplier: float = lerp(1, 6, clamp((distance - leash_distance) / leash_distance, 0, 1))
+		var smooth_speed: float = follow_speed * speed_multiplier
 	
-	# when target velocity is 0, catch up
+		global_position.x = lerp(camera_pos.x, target_pos.x, smooth_speed * delta)
+		global_position.z = lerp(camera_pos.z, target_pos.z, smooth_speed * delta)
+	
 	if target.velocity.x == 0:
 		global_position.x = lerp(camera_pos.x, target_pos.x, catchup_speed * delta)
 
 	if target.velocity.z == 0:
 		global_position.z = lerp(camera_pos.z, target_pos.z, catchup_speed * delta)
-
-	super(delta)
 
 
 func draw_logic() -> void:
@@ -76,7 +68,7 @@ func draw_logic() -> void:
 	immediate_mesh.surface_add_vertex(Vector3(left, 0, 0))
 	immediate_mesh.surface_end()
 
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	#material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	material.albedo_color = Color.BLACK
 	
 	add_child(mesh_instance)
