@@ -1,7 +1,7 @@
 #####
 
-draw_camera_logic has been made into a static variable so toggling this will toggle it for every camera.
-(ex: if you turn it off, it will be off for all cameras, if you turn it on it will be on for all cameras).
+# <code style="color : green">draw_camera_logic has been made into a static variable so toggling this will toggle it for every camera.  </code>
+# <code style="color : green">(ex: if you turn it off, it will be off for all cameras, if you turn it on it will be on for all cameras). </code>
 
 #####
 
