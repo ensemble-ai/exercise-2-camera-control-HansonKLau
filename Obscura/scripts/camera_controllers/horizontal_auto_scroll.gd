@@ -22,12 +22,12 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
-	var target_pos = target.global_position
+	var target_pos: Vector3 = target.global_position
 	
 	global_position.x += autoscroll_speed.x
 	global_position.z += autoscroll_speed.z
 	
-	var camera_pos = global_position
+	var camera_pos: Vector3 = global_position
 	
 	# keep target inside box
 	if target_pos.x <= camera_pos.x - box_width:

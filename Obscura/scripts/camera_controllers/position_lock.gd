@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	if draw_camera_logic:
 		draw_logic()
 	
-	var target_pos = target.global_position
+	var target_pos: Vector3 = target.global_position
 	global_position = target_pos
 
 	super(delta)
@@ -30,10 +30,10 @@ func draw_logic() -> void:
 	mesh_instance.mesh = immediate_mesh
 	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	
-	var left:float = -box_width / 2
-	var right:float = box_width / 2
-	var top:float = -box_height / 2
-	var bottom:float = box_height / 2
+	var left: float = -box_width / 2
+	var right: float = box_width / 2
+	var top: float = -box_height / 2
+	var bottom: float = box_height / 2
 	
 	immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES, material)
 	immediate_mesh.surface_add_vertex(Vector3(0, 0, top))
