@@ -3,9 +3,9 @@ extends CameraControllerBase
 
 @export var box_width: float = 10.0
 @export var box_height: float = 10.0
-@export var follow_speed: float = 3.5
-@export var catchup_speed: float = 4.0
-@export var leash_distance: float = 10.0
+@export var follow_speed: float = target.BASE_SPEED / 1.5
+@export var catchup_speed: float = 4.5
+@export var leash_distance: float = 20.0
 
 
 func _ready() -> void:
@@ -28,11 +28,22 @@ func _process(delta: float) -> void:
 		var target_2d_vector: Vector2 = Vector2(target_pos.x, target_pos.z)
 		var camera_2d_vector: Vector2 = Vector2(camera_pos.x, camera_pos.z)
 		var distance: float = target_2d_vector.distance_to(camera_2d_vector)
-	
-		var speed_multiplier: float = lerp(1, 6, clamp((distance - leash_distance) / leash_distance, 0, 1))
-		var smooth_speed: float = follow_speed * speed_multiplier
 		
-		global_position = global_position.lerp(target_pos, smooth_speed * delta)
+		#var smooth_speed: float = follow_speed
+	
+		if distance >= leash_distance / 2.0:
+			print("outside leash distance")
+			#var speed_multiplier: float = lerp(1, 6, clamp((distance - leash_distance) / leash_distance, 0, 1))
+			#smooth_speed *= speed_multiplier
+			global_position.x = move_toward(global_position.x, target_pos.x, target.velocity.length() * delta)
+			global_position.z = move_toward(global_position.z, target_pos.z, target.velocity.length() * delta)
+		else:
+			print("within leash distance")
+			#global_position = lerp(camera_pos, target_pos, smooth_speed * delta)
+			#global_position.velocity = follow_speed * delta
+			global_position.x = move_toward(global_position.x, target_pos.x, follow_speed * delta)
+			global_position.z = move_toward(global_position.z, target_pos.z, follow_speed * delta)
+		
 	
 	# when target velocity is 0, catch up
 	if target.velocity.x == 0:

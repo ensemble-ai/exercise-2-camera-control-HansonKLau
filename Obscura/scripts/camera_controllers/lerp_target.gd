@@ -4,13 +4,12 @@ extends CameraControllerBase
 @export var box_width: float = 10.0
 @export var box_height: float = 10.0
 @export var lead_speed: float = target.BASE_SPEED * 1.5
-@export var catchup_delay_duration: float = 0.5
+@export var catchup_delay_duration: float = 0.2
 @export var catchup_speed: float = 4.0
 @export var leash_distance: float = 10.0
 
 var _current_camera_distance_x: float = 0.0
 var _current_camera_distance_z: float = 0.0
-var _max_smooth_speed: float = target.HYPER_SPEED * 1.5
 var _catchup_wait_timer: float = 0.0
 
 
@@ -35,7 +34,7 @@ func _process(delta: float) -> void:
 		var lead_pos_x: float = target_pos.x + lead_offset_x
 		var distance_x: float = abs(camera_pos.x - target_pos.x)
 		var speed_multiplier_x: float = lerp(1, 6, clamp((distance_x - leash_distance) / leash_distance, 0, 1))
-		var smooth_speed_x: float = min(lead_speed * speed_multiplier_x, _max_smooth_speed)
+		var smooth_speed_x: float = lead_speed * speed_multiplier_x
 		global_position.x = lerp(global_position.x, lead_pos_x, smooth_speed_x * delta * 0.5)
 		_catchup_wait_timer = 0.0
 	else:
@@ -49,7 +48,7 @@ func _process(delta: float) -> void:
 		var lead_pos_z: float = target_pos.z + lead_offset_z
 		var distance_z: float = abs(camera_pos.z - target_pos.z)
 		var speed_multiplier_z: float = lerp(1, 6, clamp((distance_z - leash_distance) / leash_distance, 0, 1))
-		var smooth_speed_z: float = min(lead_speed * speed_multiplier_z, _max_smooth_speed)
+		var smooth_speed_z: float = lead_speed * speed_multiplier_z
 		global_position.z = lerp(global_position.z, lead_pos_z, smooth_speed_z * delta * 0.5)
 		_catchup_wait_timer = 0.0
 		
