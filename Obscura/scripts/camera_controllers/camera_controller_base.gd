@@ -1,7 +1,6 @@
 class_name CameraControllerBase
 extends Camera3D
 
-#@onready var target: Vessel = %Vessel
 
 @export var target: Vessel
 @export var dist_above_target: float = 10.0
@@ -14,6 +13,7 @@ static var draw_camera_logic: bool = true
 #camera tilt around the z axis in radians
 #var _camera_tilt_rad:float = 0.0
 #var _camera_tilt_speed:float = 0.1
+
 
 func _ready() -> void:
 	current = false
