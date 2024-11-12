@@ -21,8 +21,8 @@ If you are in a rare situation where two peer-reviewers are on a single reposito
 
 ## Peer-reviewer Information
 
-* *name:* [your name here] 
-* *email:* [your @ucdavis.edu email address here]
+* *name:* [Josh Lai] 
+* *email:* [jzlai@ucdavis.edu]
 
 ### Description ###
 
@@ -52,7 +52,7 @@ ___
 
 ### Stage 1 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -60,7 +60,7 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+There is a 5 by 5 unit cross that is centered on and follows the vessel accurately.
 
 ___
 ### Stage 2 ###
