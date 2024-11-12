@@ -65,7 +65,7 @@ There is a 5 by 5 unit cross that is centered on and follows the vessel accurate
 ___
 ### Stage 2 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -73,12 +73,12 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The autoscroll works perfectly. It moves in the bottom right direction in a box and the player is pushed into that direction.
 
 ___
 ### Stage 3 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -86,12 +86,12 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+There is a unit cross that follows the vessel and the lerp smoothing implementation is perfect. The leash distance is appropriate, and the follow speed and catchup speed are also consistent with each other.
 
 ___
 ### Stage 4 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -99,12 +99,12 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The center of the camera follows the player's movement accurately. The lead speed, delay duration, catchup speed, and leash distance are all appropriate. When switching directions while moving however, there seems to be almost a hiccup while changing directions. Everything else is perfect though.
 
 ___
 ### Stage 5 ###
 
-- [ ] Perfect
+- [x] Perfect
 - [ ] Great
 - [ ] Good
 - [ ] Satisfactory
@@ -112,7 +112,7 @@ ___
 
 ___
 #### Justification ##### 
-Write Justification here.
+The 4-way speedup push zone is correctly implemented. The camera behaves correctly when the target is inside the smaller pushbox, in between both pushboxes, and when touching the edge of the outer pushbox.
 ___
 # Code Style #
 
@@ -130,8 +130,10 @@ Please refer to the first code review template on how to do a permalink.
 
 
 #### Style Guide Infractions ####
+There are no particular infractions from what I can see.
 
 #### Style Guide Exemplars ####
+The student follows the style guide very well. Variables are declared at the beginning of each file and conditional statements are appropriately formatted and used.
 
 ___
 #### Put style guide infractures ####
@@ -150,5 +152,8 @@ If the student has breached the best practices and has done something that shoul
 This should be similar to the Code Style justification.
 
 #### Best Practices Infractions ####
+There are no major infractions of best practices from what I can see. In some of the variables, semicolons are used after they are declared. However, it does not affect the program.
 
 #### Best Practices Exemplars ####
+Variables like var _current_camera_distance_x and var _current_camera_distance_z show good practices by having underscores at the start of the variable names.
+
